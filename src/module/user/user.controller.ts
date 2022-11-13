@@ -1,21 +1,21 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
-  UseGuards,
+  Get,
+  Param,
+  Patch,
+  Post,
   Req,
-} from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
-import { Auth } from 'src/core/decorator/auth.decorator';
-import { Admin } from 'src/core/decorator/admin.decorator';
+  UseGuards,
+} from '@nestjs/common'
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger'
+import { AuthGuard } from '@nestjs/passport'
+import { Auth } from 'src/core/decorator/auth.decorator'
+import { Admin } from 'src/core/decorator/admin.decorator'
+import { UpdateUserDto } from './dto/update-user.dto'
+import { CreateUserDto } from './dto/create-user.dto'
+import type { UserService } from './user.service'
 
 @Controller('user')
 export class UserController {
@@ -28,8 +28,8 @@ export class UserController {
   getUserInfo(@Req() req) {
     console.log(req.user)
     return req.user
-
   }
+
   @ApiOperation({ summary: '获取所有用户信息' })
   @ApiBearerAuth()
   @Admin()
@@ -38,5 +38,4 @@ export class UserController {
   getAllUsersInfo() {
     return this.userService.getAllUsersInfo()
   }
-
 }
